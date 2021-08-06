@@ -1,13 +1,14 @@
 import React, { useMemo } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import { IRoute } from './Header/Header.types'
+import Home from './pages/Home'
 
 const Router: React.FC = () => {
     const routes = useMemo<IRoute[]>(() => [
         {
             id: "homepage-route",
             path: "/",
-            Component: () => null,
+            Component: Home,
             exact: true
         },
         {
