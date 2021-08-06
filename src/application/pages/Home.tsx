@@ -7,10 +7,13 @@ import { Image } from "../../ui/Image";
 import Survey from "../../domain/Survey/Survey";
 import Skeleton from "react-loading-skeleton";
 import TimelogImage from "../../assets/images/timelog.png";
+import SubHeader from '../../assets/images/subheader.png';
 
 const Home: React.FC = () => {
   return (
-    <Row>
+    <>
+    <img src={SubHeader} alt="subheader" height="70px" width="997px" />
+    <Row style={{paddingTop: 18}}>
       <LeftColumn>
         <Survey />
         <Card noPadding>
@@ -26,6 +29,7 @@ const Home: React.FC = () => {
         </Card>
       </RightColumn>
     </Row>
+    </>
   );
 };
 

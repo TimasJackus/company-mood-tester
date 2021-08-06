@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import Header from './Header/Header'
 import { IRoute } from './Header/Header.types'
 import Home from './pages/Home'
 
@@ -25,6 +26,7 @@ const Router: React.FC = () => {
 
     return (
         <BrowserRouter>
+            <Header />
             <Switch>
                 {routes.map(({id, path, Component, exact}) => <Route path={path} key={id} exact={exact}>
                     <Component />
