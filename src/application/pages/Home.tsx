@@ -4,6 +4,7 @@ import { LeftColumn } from "../../ui/LeftColumn";
 import { RightColumn } from "../../ui/RightColumn";
 import { Card } from "../../ui/ Card/Card";
 import { Image } from "../../ui/Image";
+import Survey from "../../domain/Survey/Survey";
 import Skeleton from "react-loading-skeleton";
 import TimelogImage from "../../assets/images/timelog.png";
 
@@ -11,7 +12,7 @@ const Home: React.FC = () => {
   return (
     <Row>
       <LeftColumn>
-        <Card>Test</Card>
+        <Survey />
         <Card noPadding>
           <Image src={TimelogImage} />
         </Card>
