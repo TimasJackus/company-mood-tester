@@ -14,7 +14,12 @@ const Survey: React.FC = () => {
 
   return (
     <Card center spaceBetween>
-      {!rating && (
+      {rating ? (
+        <>
+          <Row>Company stats</Row>
+          <Divider />
+        </>
+      ) : (
         <>
           <Row>
             How was your day?
