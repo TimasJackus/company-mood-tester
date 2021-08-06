@@ -14,6 +14,8 @@ code {
 
 body {
   background: url('./assets/images/bg.jpeg') left top repeat-x #F4E3B7;
+  font: 14px Arial,Helvetica,sans-serif;
+  color: #1f2e34;
 }
 
 #root {
