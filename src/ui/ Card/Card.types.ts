@@ -1,3 +1,5 @@
 export interface IProps {
-    noPadding?: boolean;
+  noPadding?: boolean;
+  center?: boolean;
+  spaceBetween?: boolean;
 }

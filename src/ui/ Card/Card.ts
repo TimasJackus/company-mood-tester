@@ -6,6 +6,19 @@ export const Card = styled.div`
   width: 100%;
   padding: 20px;
   margin-bottom: 20px;
+  display: flex;
+
+  ${({ spaceBetween }: IProps) =>
+    spaceBetween &&
+    css`
+      justify-content: space-between;
+    `}
+
+  ${({ center }: IProps) =>
+    center &&
+    css`
+      align-items: center;
+    `}
 
   ${({ noPadding }: IProps) =>
     noPadding &&
