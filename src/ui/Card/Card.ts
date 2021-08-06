@@ -7,6 +7,7 @@ export const Card = styled.div`
   padding: 20px;
   margin-bottom: 20px;
   display: flex;
+  flex-wrap: wrap;
 
   ${({ spaceBetween }: IProps) =>
     spaceBetween &&
