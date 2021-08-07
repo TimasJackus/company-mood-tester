@@ -130,6 +130,35 @@ export const mediaparkPositionData = () => [
   },
 ];
 
+// How satisfied are you with the amount of working support you are currently receiving?
+// How full of energy are you feeling today?
+// How content are you with the work pressure you are currently experiencing?
+// How valued for your work input are you currently feeling?
+// How fulfilled are you with your current tasks and duties?
+
+const questions = () => [
+  {
+    label: "Support",
+    value: getRandomNum(1.5, 5),
+  },
+  {
+    label: "Energy",
+    value: getRandomNum(1.5, 5),
+  },
+  {
+    label: "Stress",
+    value: getRandomNum(1.5, 5),
+  },
+  {
+    label: "Value",
+    value: getRandomNum(1.5, 5),
+  },
+  {
+    label: "Fulfillment",
+    value: getRandomNum(1.5, 5),
+  },
+];
+
 export const moodData: any = () => ({
   all: {
     average: getRandomNum(1.5, 5),
@@ -137,35 +166,41 @@ export const moodData: any = () => ({
     companyData: companyData(),
     position: allPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
   civitta_lt: {
     average: getRandomNum(1.5, 5),
     monthData: monthData(),
     position: civittaPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
   civitta_lv: {
     average: getRandomNum(1.5, 5),
     monthData: monthData(),
     position: civittaPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
   civitta_ee: {
     average: getRandomNum(1.5, 5),
     monthData: monthData(),
     position: civittaPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
   mediapark_lt: {
     average: getRandomNum(1.5, 5),
     monthData: monthData(),
     position: mediaparkPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
   mediapark_lv: {
     average: getRandomNum(1.5, 5),
     monthData: monthData(),
     position: mediaparkPositionData(),
     streamData: streamData(),
+    questionsData: questions(),
   },
 });

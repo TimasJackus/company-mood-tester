@@ -70,6 +70,22 @@ const Mood: React.FC = () => {
                 <Span size={48} weight={700}>
                   {moodData()[selected.value].average}
                 </Span>
+                {moodData()[selected.value].questionsData.map(
+                  (question: any) => (
+                    <Row key={question.label} mt={8}>
+                      <Span color="#80a0a9" size={14}>
+                        {question.label}{" "}
+                        <Span
+                          weight={700}
+                          size={14}
+                          color={question.value <= 2.5 ? "#ff8000" : "#8ac500"}
+                        >
+                          {question.value}
+                        </Span>
+                      </Span>
+                    </Row>
+                  )
+                )}
               </Column>
               <Column>
                 <Graph
