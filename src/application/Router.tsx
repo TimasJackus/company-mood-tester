@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./Header/Header";
 import { IRoute } from "./Header/Header.types";
 import Home from "./pages/Home";
-import Result from "./pages/Result";
+import Mood from "./pages/Mood";
 
 const Router: React.FC = () => {
   const routes = useMemo<IRoute[]>(
@@ -22,7 +22,7 @@ const Router: React.FC = () => {
       {
         id: "hr-admin-route",
         path: "/hr-admin-moods",
-        Component: Result,
+        Component: Mood,
       },
     ],
     []
