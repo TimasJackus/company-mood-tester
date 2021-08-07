@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Header from './Header/Header'
 import { IRoute } from './Header/Header.types'
 import Home from './pages/Home'
+import Time from './pages/Time'
 
 const Router: React.FC = () => {
     const routes = useMemo<IRoute[]>(() => [
@@ -15,7 +16,7 @@ const Router: React.FC = () => {
         {
             id: "timetable-route",
             path: "/timetable",
-            Component: () => null,
+            Component: Time,
         },
         {
             id: "hr-admin-route",
