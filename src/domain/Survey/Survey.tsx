@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Card } from "../../ui/Card/Card";
 import { Row } from "../../ui/Row/Row";
 import { Column } from "../../ui/Column/Column";
@@ -14,13 +14,29 @@ import {
   AiOutlineSmile,
   AiOutlineStar,
 } from "react-icons/all";
+import useSWR from "swr";
+import { SurveyResponse } from "./Survey.types";
+import { instance } from "../../infrastructure/api";
 
 const Survey: React.FC = () => {
   const [rating, setRating] = useState<Number | null>(null);
   const averageRating = 2;
 
+  const {data: todaysQuestion} = useSWR<SurveyResponse, any>("/question/today");
+  const {data: user} = useSWR("/api/v1/users/me");
+
+  console.log(user);
+
+
+  const userId = useMemo(() => user?.id, [user?.id])
+
   const onChange = (rate: Number) => {
     setRating(rate);
+    instance.post("/answer", {
+      "rating": rate,
+      "questionId": todaysQuestion?.id,
+      "userId": userId
+    })
   };
 
   const getColorByRating = () => {
@@ -54,7 +70,7 @@ const Survey: React.FC = () => {
         </Alert>
       )}
       <Card center spaceBetween>
-        {rating ? (
+        {todaysQuestion?.answeredThisWeek || rating ? (
           <>
             <Column center>
               <Span size={24}>
@@ -72,8 +88,8 @@ const Survey: React.FC = () => {
         ) : (
           <>
             <Row spaceBetween center>
-              <Span size={16} weight={700}>
-                How was your day?
+              <Span size={16} weight={700} maxWidth={350}>
+                {todaysQuestion?.question}
               </Span>
               <Rating
                 onChange={onChange}
