@@ -23,4 +23,21 @@ export const Row = styled.div`
     css`
       justify-content: center;
     `}
+
+  ${({ end }: IProps) =>
+    end &&
+    css`
+      justify-content: flex-end;
+    `}
+
+  ${({ wrap }: IProps) =>
+    wrap &&
+    css`
+      flex-wrap: wrap;
+    `}
+  ${({ reverse }: IProps) =>
+    reverse &&
+    css`
+      flex-direction: row-reverse;
+    `}
 `;

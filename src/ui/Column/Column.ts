@@ -24,4 +24,9 @@ export const Column = styled(Row)`
     css`
       align-items: center;
     `}
+  ${({ reverse }: IProps) =>
+    reverse &&
+    css`
+      flex-direction: row-reverse;
+    `}
 `;

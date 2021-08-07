@@ -9,6 +9,7 @@ import { Column } from "../../ui/Column/Column";
 import Skeleton from "react-loading-skeleton";
 import SubHeader from "../../assets/images/subheader.png";
 import { Graph } from "../../ui/Graph/Graph";
+import { companyData, monthData, positionData, streamData } from "./MoodData";
 
 const Mood: React.FC = () => {
   return (
@@ -33,12 +34,27 @@ const Mood: React.FC = () => {
                 </Span>
               </Column>
               <Column>
-                <Graph />
+                <Graph vertical={true} data={monthData} />
               </Column>
             </Row>
           </Card>
           <Card>
-            <Skeleton count={10} />
+            <Row>
+              <Column>
+                <H3>By company</H3>
+                <Graph data={companyData} />
+              </Column>
+              <Column>
+                <H3>By stream</H3>
+                <Graph data={streamData} />
+              </Column>
+            </Row>
+            <Row mt={20}>
+              <Column>
+                <H3>By position</H3>
+                <Graph data={positionData} />
+              </Column>
+            </Row>
           </Card>
         </LeftColumn>
       </Row>
