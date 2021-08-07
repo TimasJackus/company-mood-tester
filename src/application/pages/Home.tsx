@@ -8,6 +8,8 @@ import Survey from "../../domain/Survey/Survey";
 import Skeleton from "react-loading-skeleton";
 import TimelogImage from "../../assets/images/timelog.png";
 import SubHeader from "../../assets/images/subheader.png";
+import Staff from "../../assets/images/staff.png";
+import News from "../../assets/images/news.png";
 
 const Home: React.FC = () => {
   return (
@@ -22,10 +24,10 @@ const Home: React.FC = () => {
         </LeftColumn>
         <RightColumn>
           <Card>
-            <Skeleton count={10} />
+            <img src={Staff} alt="subheader" style={{ width: "100%" }} />
           </Card>
           <Card>
-            <Skeleton count={10} />
+            <img src={News} alt="subheader" style={{ width: "100%" }} />
           </Card>
         </RightColumn>
       </Row>
