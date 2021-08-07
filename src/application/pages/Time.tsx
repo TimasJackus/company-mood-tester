@@ -18,9 +18,16 @@ import { DialogTitle } from "../../ui/DialogTitle";
 import { CloseButton } from "../../ui/CloseButton";
 import { DialogWrapper } from "../../ui/DialogWrapper";
 import { SaveButton } from "../../ui/SaveButton";
+import Rating from "react-rating";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const Time = () => {
+    const [rating, setRating] = useState<Number | null>(null);
     const [open, setOpen] = useState<boolean>(false);
+
+    const onChange = (rate: Number) => {
+        setRating(rate);
+      };
 
     const toggleOpen = useCallback(() => setOpen(prevOpen => !prevOpen), [])
 
@@ -88,6 +95,19 @@ const Time = () => {
                     </DialogTitle>
                     <CloseButton onClick={toggleOpen} />
                     <br />
+                    <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: "100%",
+                        height: "70px"
+                    }}>
+                        <Rating
+                            onChange={onChange}
+                            emptySymbol={<AiOutlineStar size={28} color="#ffc000" />}
+                            fullSymbol={<AiFillStar size={28} color="#ffc000" />}
+                       />
+                    </div>
                     <div>
                         <SaveButton>
                             Save
