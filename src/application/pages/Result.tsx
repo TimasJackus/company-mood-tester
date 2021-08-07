@@ -9,17 +9,11 @@ import Skeleton from "react-loading-skeleton";
 import TimelogImage from "../../assets/images/timelog.png";
 import SubHeader from "../../assets/images/subheader.png";
 
-const Home: React.FC = () => {
+const Result: React.FC = () => {
   return (
     <>
       <img src={SubHeader} alt="subheader" height="70px" width="997px" />
       <Row style={{ paddingTop: 18 }} spaceBetween>
-        <LeftColumn>
-          <Survey />
-          <Card noPadding>
-            <Image src={TimelogImage} />
-          </Card>
-        </LeftColumn>
         <RightColumn>
           <Card>
             <Skeleton count={10} />
@@ -28,9 +22,17 @@ const Home: React.FC = () => {
             <Skeleton count={10} />
           </Card>
         </RightColumn>
+        <LeftColumn>
+          <Card>
+            <Skeleton count={10} />
+          </Card>
+          <Card>
+            <Skeleton count={10} />
+          </Card>
+        </LeftColumn>
       </Row>
     </>
   );
 };
 
-export default Home;
+export default Result;

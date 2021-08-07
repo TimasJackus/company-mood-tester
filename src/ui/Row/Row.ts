@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
-import { IProps } from "./Card.types";
+import { IProps } from "./Row.types";
 
-export const Card = styled.div`
-  background: #fff;
+export const Row = styled.div`
+  display: flex;
   width: 100%;
-  padding: 20px;
-  margin-bottom: 20px;
+  margin-top: ${({ mt }: IProps) => mt || 0}px;
 
   ${({ spaceBetween }: IProps) =>
     spaceBetween &&
@@ -18,10 +17,10 @@ export const Card = styled.div`
     css`
       align-items: center;
     `}
-
-  ${({ noPadding }: IProps) =>
-    noPadding &&
+  
+  ${({ centerH }: IProps) =>
+    centerH &&
     css`
-      padding: 0;
+      justify-content: center;
     `}
 `;
