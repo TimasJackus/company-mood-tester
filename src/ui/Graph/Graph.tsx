@@ -1,13 +1,26 @@
 import React from "react";
 import { Row } from "../Row/Row";
 import { BarComponent } from "./BarComponent";
+import { getRandomNum } from "../../utils/getRandomNum";
 
-export const Graph: React.FC = () => {
+interface IProps {
+  vertical?: boolean;
+  data: any[];
+}
+
+export const Graph = ({ vertical, data }: IProps) => {
+  const maxValue = 5;
   return (
-    <Row>
-      <BarComponent value={3.3} max={5} label="Jan" />
-      <BarComponent value={4.5} max={5} label="Feb" />
-      <BarComponent value={0} max={5} label="Mar" />
+    <Row wrap={!vertical}>
+      {data.map((item) => (
+        <BarComponent
+          key={item.label}
+          value={Number(item.value)}
+          max={maxValue}
+          label={item.label}
+          vertical={vertical}
+        />
+      ))}
     </Row>
   );
 };
