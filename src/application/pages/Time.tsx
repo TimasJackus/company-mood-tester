@@ -169,7 +169,7 @@ const Time = () => {
               <TableBodyCell
                 style={{ paddingRight: 8, width: 81, textAlign: "right" }}
               >
-                {Number(getRandomNum(0, 10)) > 5 && getRandomNum(0, 9)}
+                
               </TableBodyCell>
             </TableRow>
             <TableRow>
@@ -190,7 +190,7 @@ const Time = () => {
               <TableBodyCell
                 style={{ paddingRight: 8, width: 81, textAlign: "right" }}
               >
-                {Number(getRandomNum(0, 10)) > 5 && getRandomNum(0, 9)}
+                4.1
               </TableBodyCell>
             </TableRow>
             <TableRow>
@@ -211,7 +211,7 @@ const Time = () => {
               <TableBodyCell
                 style={{ paddingRight: 8, width: 81, textAlign: "right" }}
               >
-                {Number(getRandomNum(0, 10)) > 5 && getRandomNum(0, 9)}
+                7.2
               </TableBodyCell>
             </TableRow>
           </TableBody>
