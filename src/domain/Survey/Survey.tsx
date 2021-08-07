@@ -20,13 +20,10 @@ import { instance } from "../../infrastructure/api";
 
 const Survey: React.FC = () => {
   const [rating, setRating] = useState<Number | null>(null);
-  const averageRating = 2;
+  const averageRating = 5;
 
   const {data: todaysQuestion} = useSWR<SurveyResponse, any>("/question/today");
   const {data: user} = useSWR("/api/v1/users/me");
-
-  console.log(user);
-
 
   const userId = useMemo(() => user?.id, [user?.id])
 

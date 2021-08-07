@@ -11,7 +11,7 @@ const defaultOptions = {
 // Create instance
 export const instance = axios.create(defaultOptions);
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOjgsInVzZXJJZCI6InFVbDJkVG1HckgwSm4za0VvOUlMRyIsInR5cGUiOiJzZXNzaW9uIiwiaWF0IjoxNjI4MzM1NDYyfQ.H8LCJXRjjUGFdtvTl09FUpNpYNvq_f-5VX2cyJc09NE"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uSWQiOjEwLCJ1c2VySWQiOiJxVWwyZFRtR3JIMEpuM2tFbzlJTEciLCJ0eXBlIjoic2Vzc2lvbiIsImlhdCI6MTYyODMzOTE5NH0.tUNR_I2pKx81cLfqlh0fDpjk6KXObbEp8Jvv6UoKz_o"
 
 // Set the AUTH token for any request
 instance.interceptors.request.use(function (config) {

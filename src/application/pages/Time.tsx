@@ -22,10 +22,61 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Survey from "../../domain/Survey/Survey";
 import { getRandomNum } from "../../utils/getRandomNum";
+import useSWR from "swr";
+import { CgCheck } from "react-icons/cg";
+
+
+interface AnswerResponse {
+    created_at: string;
+    id: string;
+    questionId: string;
+    rating: number;
+    userId: string;
+}
+
+interface LogResponse {
+    created_at: string;
+    id: string;
+    questionId: string;
+}
+
+interface TimeSheetResponse {
+    answer: AnswerResponse | null;
+    answeredThisWeek: boolean;
+    id: string;
+    logs: LogResponse[];
+    question: string;
+    today: boolean;
+}
 
 const Time = () => {
   const [rating, setRating] = useState<Number | null>(null);
+  const [changed, setChanged] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedLog, setSelectedLog] = useState<TimeSheetResponse | undefined>();
+
+  const {data: user} = useSWR("/api/v1/users/me");
+  const fromDate = new Date("2021-08-01").toISOString();
+  const toDate = new Date("2021-09-01").toISOString();
+  const userId = useMemo(() => user?.id, [user?.id])
+  const {data: timesheet} = useSWR<TimeSheetResponse[], any>(userId ? `/question/timesheet?from=${fromDate}&to=${toDate}&userId=${userId}` : null);
+
+
+  const logMap = useMemo(() => {
+    if(!timesheet) return [];
+    return timesheet.map(sheet => [...sheet?.logs]).flat();
+  }, [timesheet])
+
+  const logs = useMemo(() => logMap.map(log => ({...log, day: new Date(log?.created_at).getDay()})), [logMap])
+
+  const getLogByDay = useCallback((day: number) => {
+      return logs?.find(log => log.day === day);
+  }, [logs])
+
+  const findLog = useCallback((id: string | undefined) => {
+      return timesheet?.find(sheet => sheet.id === id)
+  }, [timesheet])
+
 
   const onChange = (rate: Number) => {
     setRating(rate);
@@ -42,6 +93,7 @@ const Time = () => {
     }
     return months;
   }, []);
+
 
   return (
     <>
@@ -62,16 +114,24 @@ const Time = () => {
           <TableBody>
             <TableRow>
               <TableBodyTitleCell>Mood</TableBodyTitleCell>
-              {headColumns.map((headColumn, index) => (
-                <TableBodyCell
-                  style={{
-                    background: weekends.includes(index + 1)
-                      ? "#f5f9fa"
-                      : "inherit",
-                  }}
-                  onClick={toggleOpen}
-                ></TableBodyCell>
-              ))}
+              {headColumns.map((headColumn, index) => {
+                const currentLog = getLogByDay(index + 1);
+                const foundLog = findLog(currentLog?.questionId);
+
+                return <TableBodyCell
+                            style={{
+                            background: weekends.includes(index + 1)
+                                ? "#f5f9fa"
+                                : "inherit",
+                            }}
+                            onClick={() => {
+                                if(foundLog) {
+                                    setSelectedLog(foundLog);
+                                    toggleOpen();
+                                }
+                            }}
+                        >{foundLog?.id === "3" && !changed && "-"}{foundLog?.id === "3" && changed && <CgCheck size={24} color="green" style={{marginBottom: -10}} />}{!!foundLog && !foundLog?.answer && foundLog?.id !== "3" && "-"}{!!foundLog?.answer && <CgCheck size={24} color="green" style={{marginBottom: -10}} />}</TableBodyCell>
+              })}
               <TableBodyCell
                 style={{ paddingRight: 8, width: 81, textAlign: "right" }}
               ></TableBodyCell>
@@ -101,9 +161,9 @@ const Time = () => {
                       : "inherit",
                   }}
                 >
-                  {Number(getRandomNum(0, 10)) > 5 &&
-                    !weekends.includes(index + 1) &&
-                    getRandomNum(0, 9)}
+                   {
+                    !weekends.includes(index + 1) && index < 7 && index > 5 &&
+                    "7.6"}
                 </TableBodyCell>
               ))}
               <TableBodyCell
@@ -122,9 +182,9 @@ const Time = () => {
                       : "inherit",
                   }}
                 >
-                  {Number(getRandomNum(0, 10)) > 5 &&
-                    !weekends.includes(index + 1) &&
-                    getRandomNum(0, 9)}
+                  {
+                    !weekends.includes(index + 1) && index < 7 && index > 2 &&
+                    "5.2"}
                 </TableBodyCell>
               ))}
               <TableBodyCell
@@ -143,9 +203,9 @@ const Time = () => {
                       : "inherit",
                   }}
                 >
-                  {Number(getRandomNum(0, 10)) > 5 &&
-                    !weekends.includes(index + 1) &&
-                    getRandomNum(0, 9)}
+                  {index > 3 &&
+                    !weekends.includes(index + 1) && index < 7 &&
+                    "8.5"}
                 </TableBodyCell>
               ))}
               <TableBodyCell
@@ -181,7 +241,7 @@ const Time = () => {
       </TimesheetWrapper>
       <DialogWrapper open={open} onClose={() => {}}>
         <Dialog open={open} onClose={() => {}}>
-          <DialogTitle>How was you day today?</DialogTitle>
+          <DialogTitle>{selectedLog?.question}</DialogTitle>
           <CloseButton onClick={toggleOpen} />
           <br />
           <div
@@ -200,7 +260,10 @@ const Time = () => {
             />
           </div>
           <div>
-            <SaveButton>Save</SaveButton>
+            <SaveButton onClick={() => {
+                if(selectedLog?.id === "3") setChanged(true);
+                toggleOpen();
+            }}>Save</SaveButton>
           </div>
         </Dialog>
       </DialogWrapper>
