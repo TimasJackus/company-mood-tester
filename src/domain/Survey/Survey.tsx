@@ -20,7 +20,6 @@ import { instance } from "../../infrastructure/api";
 
 const Survey: React.FC = () => {
   const [rating, setRating] = useState<Number | null>(null);
-  const averageRating = 5;
 
   const { data: todaysQuestion } = useSWR<SurveyResponse, any>(
     "/question/today"
