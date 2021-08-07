@@ -195,8 +195,8 @@ const Time = () => {
           >
             <Rating
               onChange={onChange}
-              emptySymbol={<AiOutlineStar size={28} color="#ffc000" />}
-              fullSymbol={<AiFillStar size={28} color="#ffc000" />}
+              emptySymbol={<AiOutlineStar size={50} color="#ffc000" />}
+              fullSymbol={<AiFillStar size={50} color="#ffc000" />}
             />
           </div>
           <div>
