@@ -30,6 +30,8 @@ const Time = () => {
         setRating(rate);
       };
 
+    const weekends = [6,7,13,14,20,21,27,28];
+
     const toggleOpen = useCallback(() => setOpen(prevOpen => !prevOpen), [])
 
     const headColumns = useMemo(() => {
@@ -60,28 +62,28 @@ const Time = () => {
                     <TableBody>
                         <TableRow>
                             <TableBodyTitleCell>Mood</TableBodyTitleCell>
-                            {headColumns.map(headColumn => <TableBodyCell onClick={toggleOpen}></TableBodyCell>)}
+                            {headColumns.map((headColumn, index) => <TableBodyCell style={{ background: weekends.includes(index + 1) ? "#f5f9fa" : "inherit" }} onClick={toggleOpen}></TableBodyCell>)}
                             <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}></TableBodyCell>
                         </TableRow>
                         <TableRow>
                             <TableBodyTitleCell>Trip/Vacation</TableBodyTitleCell>
-                            {headColumns.map(headColumn => <TableBodyCell></TableBodyCell>)}
+                            {headColumns.map((headColumn, index) => <TableBodyCell style={{ background: weekends.includes(index + 1) ? "#f5f9fa" : "inherit" }}></TableBodyCell>)}
                             <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}></TableBodyCell>
                         </TableRow>
                         <TableRow>
                             <TableBodyProjectCell>MAI TAI</TableBodyProjectCell>
-                            {headColumns.map(headColumn => <TableBodyCell>{getRandomNum(0, 9)}</TableBodyCell>)}
-                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{getRandomNum(0, 9)}</TableBodyCell>
+                            {headColumns.map((headColumn, index) => <TableBodyCell style={{ background: weekends.includes(index + 1) ? "#f5f9fa" : "inherit" }}>{Number(getRandomNum(0,10)) > 5 && !weekends.includes(index + 1) && getRandomNum(0, 9)}</TableBodyCell>)}
+                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{Number(getRandomNum(0,10)) > 5 && getRandomNum(0, 9)}</TableBodyCell>
                         </TableRow>
                         <TableRow>
                             <TableBodyProjectCell>GIN TONIC</TableBodyProjectCell>
-                            {headColumns.map(headColumn => <TableBodyCell>{getRandomNum(0, 9)}</TableBodyCell>)}
-                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{getRandomNum(0, 9)}</TableBodyCell>
+                            {headColumns.map((headColumn, index) => <TableBodyCell style={{ background: weekends.includes(index + 1) ? "#f5f9fa" : "inherit" }}>{Number(getRandomNum(0,10)) > 5 && !weekends.includes(index + 1) && getRandomNum(0, 9)}</TableBodyCell>)}
+                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{Number(getRandomNum(0,10)) > 5 && getRandomNum(0, 9)}</TableBodyCell>
                         </TableRow>
                         <TableRow>
                             <TableBodyProjectCell>TEQUILA SUNRISE</TableBodyProjectCell>
-                            {headColumns.map(headColumn => <TableBodyCell>{getRandomNum(0, 9)}</TableBodyCell>)}
-                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{getRandomNum(0, 9)}</TableBodyCell>
+                            {headColumns.map((headColumn,index) => <TableBodyCell style={{ background: weekends.includes(index + 1) ? "#f5f9fa" : "inherit" }}>{Number(getRandomNum(0,10)) > 5 && !weekends.includes(index + 1) && getRandomNum(0, 9)}</TableBodyCell>)}
+                            <TableBodyCell style={{paddingRight: 8, width: 81, textAlign: "right"}}>{Number(getRandomNum(0,10)) > 5 && getRandomNum(0, 9)}</TableBodyCell>
                         </TableRow>
                     </TableBody>
                 </Table>
