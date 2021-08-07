@@ -5,4 +5,5 @@ export interface IProps {
   ml?: number;
   mt?: number;
   maxWidth?: number;
+  width?: number;
 }

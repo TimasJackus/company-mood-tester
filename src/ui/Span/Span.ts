@@ -8,4 +8,5 @@ export const Span = styled.span`
   margin-left: ${({ ml }: IProps) => ml || 0}px;
   margin-top: ${({ mt }: IProps) => mt || 0}px;
   maxWidth: ${({ maxWidth }: IProps) => `${maxWidth}px` || "auto"};
+  width: ${({ width }: IProps) => (width ? width + "px" : "auto")};
 `;
