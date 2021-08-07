@@ -22,21 +22,22 @@ const Survey: React.FC = () => {
   const [rating, setRating] = useState<Number | null>(null);
   const averageRating = 5;
 
-  const {data: todaysQuestion} = useSWR<SurveyResponse, any>("/question/today");
-  const {data: user} = useSWR("/api/v1/users/me");
+  const { data: todaysQuestion } = useSWR<SurveyResponse, any>(
+    "/question/today"
+  );
+  const { data: user } = useSWR("/api/v1/users/me");
 
   console.log(user);
 
-
-  const userId = useMemo(() => user?.id, [user?.id])
+  const userId = useMemo(() => user?.id, [user?.id]);
 
   const onChange = (rate: Number) => {
     setRating(rate);
     instance.post("/answer", {
-      "rating": rate,
-      "questionId": todaysQuestion?.id,
-      "userId": userId
-    })
+      rating: rate,
+      questionId: todaysQuestion?.id,
+      userId: userId,
+    });
   };
 
   const getColorByRating = () => {
@@ -102,8 +103,8 @@ const Survey: React.FC = () => {
         )}
         <Row>
           <Span color="#80a0a9">
-            Mood test streak: <Span weight={700}>1</Span> <br />
-            Personal record: <Span weight={700}>3</Span>
+            Your current streak: <Span weight={700}>1</Span> <br />
+            Your longest streak: <Span weight={700}>3</Span>
           </Span>
         </Row>
       </Card>
