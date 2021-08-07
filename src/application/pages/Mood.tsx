@@ -59,15 +59,7 @@ const Mood: React.FC = () => {
         </Card>
       </Row>
       <Row style={{ paddingTop: 18 }} spaceBetween>
-        <RightColumn>
-          <Card>
-            <Skeleton count={10} />
-          </Card>
-          <Card>
-            <Skeleton count={10} />
-          </Card>
-        </RightColumn>
-        <LeftColumn>
+        <LeftColumn full={true}>
           <Card>
             <Row>
               <Column>
