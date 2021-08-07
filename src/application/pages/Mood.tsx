@@ -10,6 +10,11 @@ import Skeleton from "react-loading-skeleton";
 import { Graph } from "../../ui/Graph/Graph";
 import { moodData } from "./MoodData";
 import Select from "react-select";
+import {
+  AiFillCaretUp,
+  AiOutlineCaretDown,
+  AiOutlineCaretUp,
+} from "react-icons/all";
 
 const options = [
   {
@@ -72,7 +77,7 @@ const Mood: React.FC = () => {
                 </Span>
                 {moodData()[selected.value].questionsData.map(
                   (question: any) => (
-                    <Row key={question.label} mt={8}>
+                    <Row key={question.label} mt={4}>
                       <Span color="#80a0a9" size={14}>
                         {question.label}{" "}
                         <Span
@@ -80,7 +85,16 @@ const Mood: React.FC = () => {
                           size={14}
                           color={question.value <= 2.5 ? "#ff8000" : "#8ac500"}
                         >
-                          {question.value}
+                          {question.value}{" "}
+                          {question.value <= 2.5 ? (
+                            <AiOutlineCaretDown
+                              style={{ verticalAlign: "top" }}
+                            />
+                          ) : (
+                            <AiOutlineCaretUp
+                              style={{ verticalAlign: "top" }}
+                            />
+                          )}
                         </Span>
                       </Span>
                     </Row>
