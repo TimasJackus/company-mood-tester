@@ -20,7 +20,9 @@ export const BarComponent = ({ value, label, max, vertical }: IProps) => {
     <Container center end reverse={!vertical}>
       <Span color="#80a0a9">{value}</Span>
       <Bar height={(value / max) * maxHeight} vertical={vertical} />
-      <Span color="#80a0a9">{label}</Span>
+      <Span color="#80a0a9" width={!vertical ? 120 : undefined}>
+        {label}
+      </Span>
     </Container>
   );
 };

@@ -4,4 +4,5 @@ export interface IProps {
   weight?: number;
   ml?: number;
   mt?: number;
+  width?: number;
 }

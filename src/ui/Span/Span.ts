@@ -7,4 +7,5 @@ export const Span = styled.span`
   font-weight: ${({ weight }: IProps) => weight || "inherit"};
   margin-left: ${({ ml }: IProps) => ml || 0}px;
   margin-top: ${({ mt }: IProps) => mt || 0}px;
+  width: ${({ width }: IProps) => (width ? width + "px" : "auto")};
 `;

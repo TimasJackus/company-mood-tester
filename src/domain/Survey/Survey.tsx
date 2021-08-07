@@ -17,7 +17,7 @@ import {
 
 const Survey: React.FC = () => {
   const [rating, setRating] = useState<Number | null>(null);
-  const averageRating = 2;
+  const averageRating = 5;
 
   const onChange = (rate: Number) => {
     setRating(rate);
@@ -48,7 +48,7 @@ const Survey: React.FC = () => {
       {rating && rating <= 2 && (
         <Alert>
           <Span weight={700} size={16}>
-            Some text for help...
+            Press for support
           </Span>
           <Link href="mailto:hr@mediapark.com">Contact</Link>
         </Alert>

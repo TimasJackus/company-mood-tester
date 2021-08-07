@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row } from "../../ui/Row/Row";
 import { LeftColumn } from "../../ui/LeftColumn";
 import { RightColumn } from "../../ui/RightColumn";
@@ -7,14 +7,52 @@ import { H3 } from "../../ui/H3";
 import { Span } from "../../ui/Span/Span";
 import { Column } from "../../ui/Column/Column";
 import Skeleton from "react-loading-skeleton";
-import SubHeader from "../../assets/images/subheader.png";
 import { Graph } from "../../ui/Graph/Graph";
-import { companyData, monthData, positionData, streamData } from "./MoodData";
+import { moodData } from "./MoodData";
+import Select from "react-select";
+
+const options = [
+  {
+    value: "all",
+    label: "All",
+  },
+  {
+    value: "civitta_lt",
+    label: "Civitta LT",
+  },
+  {
+    value: "civitta_lv",
+    label: "Civitta LV",
+  },
+  {
+    value: "civitta_ee",
+    label: "Civitta EE",
+  },
+  {
+    value: "mediapark_lt",
+    label: "Mediapark LT",
+  },
+  {
+    value: "mediapark_lv",
+    label: "Mediapark LV",
+  },
+];
 
 const Mood: React.FC = () => {
+  const [selected, setSelected] = useState<any>(options[0]);
   return (
     <>
-      <img src={SubHeader} alt="subheader" height="70px" width="997px" />
+      <Row>
+        <Card>
+          <div style={{ width: 250 }}>
+            <Select
+              options={options}
+              value={selected}
+              onChange={(value) => setSelected(value)}
+            />
+          </div>
+        </Card>
+      </Row>
       <Row style={{ paddingTop: 18 }} spaceBetween>
         <RightColumn>
           <Card>
@@ -30,29 +68,34 @@ const Mood: React.FC = () => {
               <Column>
                 <H3>Overall mood</H3>
                 <Span size={48} weight={700}>
-                  3.4
+                  {moodData()[selected.value].average}
                 </Span>
               </Column>
               <Column>
-                <Graph vertical={true} data={monthData} />
+                <Graph
+                  vertical={true}
+                  data={moodData()[selected.value].monthData}
+                />
               </Column>
             </Row>
           </Card>
           <Card>
             <Row>
+              {moodData()[selected.value].companyData && (
+                <Column>
+                  <H3>Company</H3>
+                  <Graph data={moodData()[selected.value].companyData} />
+                </Column>
+              )}
               <Column>
-                <H3>By company</H3>
-                <Graph data={companyData} />
-              </Column>
-              <Column>
-                <H3>By stream</H3>
-                <Graph data={streamData} />
+                <H3>Stream / Team</H3>
+                <Graph data={moodData()[selected.value].streamData} />
               </Column>
             </Row>
             <Row mt={20}>
               <Column>
-                <H3>By position</H3>
-                <Graph data={positionData} />
+                <H3>Position</H3>
+                <Graph data={moodData()[selected.value].position} />
               </Column>
             </Row>
           </Card>
