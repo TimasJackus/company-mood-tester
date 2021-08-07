@@ -25,7 +25,7 @@ const Header: React.FC = () => {
         },
         {
           to: "/hr-admin-moods",
-          children: "Result",
+          children: "Moods",
         },
       ] as ILink[],
     []

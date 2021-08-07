@@ -4,9 +4,14 @@ import { IProps } from "./Column.types";
 
 export const Column = styled(Row)`
   display: flex;
-  justify-content: space-between;
   width: 100%;
   flex-direction: column;
+
+  ${({ end }: IProps) =>
+    end &&
+    css`
+      justify-content: flex-end;
+    `}
 
   ${({ spaceBetween }: IProps) =>
     spaceBetween &&
