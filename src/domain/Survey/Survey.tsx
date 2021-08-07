@@ -39,20 +39,20 @@ const Survey: React.FC = () => {
   };
 
   const getColorByRating = () => {
-    if (averageRating < 1.5) {
+    if (rating && rating < 1.5) {
       return "#ff8000";
     }
-    if (averageRating < 3.5) {
+    if (rating && rating < 3.5) {
       return "#80a0a9";
     }
     return "#8ac500";
   };
 
   const FaceIcon = (() => {
-    if (averageRating < 1.5) {
+    if (rating && rating < 1.5) {
       return AiOutlineFrown;
     }
-    if (averageRating < 3.5) {
+    if (rating && rating < 3.5) {
       return AiOutlineMeh;
     }
     return AiOutlineSmile;
@@ -73,12 +73,12 @@ const Survey: React.FC = () => {
           <>
             <Column center>
               <Span size={24}>
-                Company Mood <Span weight={700}>Today</Span>
+                Your Mood <Span weight={700}>Today</Span>
               </Span>
               <Row centerH center mt={10}>
                 <FaceIcon size={48} color={getColorByRating()} />{" "}
                 <Span color={getColorByRating()} size={24} weight={500} ml={10}>
-                  {averageRating}
+                  {rating}
                 </Span>
               </Row>
             </Column>
