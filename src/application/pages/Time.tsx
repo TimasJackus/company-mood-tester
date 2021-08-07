@@ -20,6 +20,7 @@ import { DialogWrapper } from "../../ui/DialogWrapper";
 import { SaveButton } from "../../ui/SaveButton";
 import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import Survey from "../../domain/Survey/Survey";
 
 const Time = () => {
     const [rating, setRating] = useState<Number | null>(null);
@@ -85,8 +86,12 @@ const Time = () => {
                     </TableBody>
                 </Table>
                 <AssignProjectWrapper>
-                <img alt="assignProjectWrapper" src={assignProjectField} height="35px" width="331px" />
+                    <img alt="assignProjectWrapper" src={assignProjectField} height="35px" width="331px" />
                 </AssignProjectWrapper>
+                <div style={{maxWidth: "50%", float: "right", marginRight: "75px", marginTop: "14px", borderLeft: "1px solid #80a0a957", width: "48%", paddingLeft: 35}}>
+                    <h2>Today's question:</h2>
+                    <Survey />
+                </div>
             </TimesheetWrapper>
             <DialogWrapper open={open} onClose={() => {}}>
                 <Dialog open={open} onClose={() => {}}>
